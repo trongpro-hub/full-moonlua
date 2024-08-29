@@ -1,5 +1,5 @@
-local Webhook1 = "https://discord.com/api/webhooks/1275654721847296112/196YqXrGoge46FSC14XdXCvmr9mhYgDb08C1ydCImHRJUfdc-53ThSdaU8yQ9k0mNcYz"
-local Webhook2 = "https://discord.com/api/webhooks/1275264440866181150/iF9BaJLivtjkKxpoRZ5ZrVy6Judwbbpr0YUAOyZXjm0ZCG7owRZtnWe-S33CRCYU_fkR"
+local Webhook1 = "https://discord.com/api/webhooks/1278679391555026996/YmyuwzylJaraYNqA4EWy-Gj7Bnkhy_Mu_J1jH_BdYrdF5lHzrBABgJEntR8nKVMVzk1I"
+local Webhook2 = "https://discord.com/api/webhooks/1278678934598451260/BhDERBl9yENEU1JPtsU8N_Lrl4Rf5T6bbQEOpb_jkzBE4Yn5alJCoUk9OFED1C-wMRKj"
 local Moon = {
     "http://www.roblox.com/asset/?id=9709149680",
     "http://www.roblox.com/asset/?id=9709150086",
@@ -83,7 +83,7 @@ local function autoHop()
                         end
                         if g == true then
                             if checkServerMoonPhase(server.id) then
-                                bestServer = server.id  -- Ưu tiên server có Moon Phase tốt
+                                bestServer = server.id
                                 break
                             end
                             table.insert(b, f)
@@ -114,7 +114,6 @@ local function autoHop()
     until game.JobId ~= game.PlaceId
 end
 
--- Nếu moonTextureId không phải là 9709149052 hoặc 9709149431, tự động hop server
 if moonTextureId ~= "http://www.roblox.com/asset/?id=9709149052" and moonTextureId ~= "http://www.roblox.com/asset/?id=9709149431" then
     autoHop()
     return -- Kết thúc script ở đây để không thực hiện phần còn lại
