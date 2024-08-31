@@ -656,6 +656,8 @@ do -- Team Script
     until game.Players.LocalPlayer.Team
     repeat wait() until game.Players.LocalPlayer.Character
 end
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "", HidePremium = false, IntroText = "Library", SaveConfig = true, ConfigFolder = ""})
 
 function Hop()
     local PlaceID = game.PlaceId
@@ -2520,10 +2522,6 @@ spawn(function()
         end
     end
 end)
-
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/trongpro-hub/trongdepzai/main/autodoughking')))()
-local Window = OrionLib:MakeWindow({Name = "", HidePremium = false, IntroText = "Library", SaveConfig = true, ConfigFolder = ""})
-
 -------------Tab-----------------------
 
 local Wld = Window:MakeTab({
@@ -6645,4 +6643,4 @@ spawn(function()
         end
     end)
 wait(7)
-loadstring(game:HttpGet("https://raw.githubusercontent.com/trongpro-hub/full-moonlua/main/beta.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/trongpro-hub/full-moonlua/main/test"))()
