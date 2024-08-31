@@ -1,3 +1,5 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "", HidePremium = false, IntroText = "Library", SaveConfig = true, ConfigFolder = ""})
 if game.PlaceId == 2753915549 then
     World1 = true
 elseif game.PlaceId == 4442272183 then
@@ -632,6 +634,29 @@ function CheckQuest()
             CFrameMon = CFrame.new(-16933.2129, 93.3503036, 999.450989)
         end
     end
+end
+
+do -- Team Script
+    repeat 
+        ChooseTeam = game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("ChooseTeam",true)
+        UIController = game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("UIController",true)
+        if UIController and ChooseTeam then
+            if ChooseTeam.Visible then
+                for i,v in pairs(getgc()) do
+                    if type(v) == "function" and getfenv(v).script == UIController then
+                        local constant = getconstants(v)
+                        pcall(function()
+                            if constant[1] == "Pirates" and #constant == 1 then
+                                v(shared.Team or "Pirates")
+                            end
+                        end)
+                    end
+                end
+            end
+        end
+        wait(1)
+    until game.Players.LocalPlayer.Team
+    repeat wait() until game.Players.LocalPlayer.Character
 end
 
 function Hop()
@@ -2497,10 +2522,6 @@ spawn(function()
         end
     end
 end)
-
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/trongpro-hub/trongdepzai/main/autodoughking')))()
-local Window = OrionLib:MakeWindow({Name = "", HidePremium = false, IntroText = "Library", SaveConfig = true, ConfigFolder = ""})
-
 -------------Tab-----------------------
 
 local Wld = Window:MakeTab({
@@ -2542,11 +2563,25 @@ R:AddButton({
         wait(3)
         Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-5357.1875, 314.0587158203125, -2494.434814453125)
         wait(3)
-        replicatedStorage.Remotes.CommF_:InvokeServer("StartDialogue", "Sealed King")
-        wait(3)
+        spawn(function()
+            while wait() do
+                if BoneFMode == "Quest" and _G.Auto_Quest and World3 then
+                    pcall(function()
+                        if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
+                            StartBring = false
+                            topos(BoneQuestPos)
+                            if (BoneQuestPos.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 3 then
+                                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartDialogue", "Sealed King")
+                            end
+                        elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
+                            if game:GetService("Workspace").Enemies:FindFirstChild("Sealed King") then
+                            end
+                        end
+                    end)
+                end
+            end
+        end)
         topos(CFrame.new(2952.8408203125, 2281.97900390625, -7216.93701171875))
-        wait(3)
-        replicatedStorage.Remotes.CommF_:InvokeServer("StartDialogue", "Mysterious Force")
     end 
 })
 
@@ -6607,3 +6642,5 @@ spawn(function()
             end
         end
     end)
+wait(7)
+loadstring(game:HttpGet("https://raw.githubusercontent.com/trongpro-hub/full-moonlua/main/beta2"))()
