@@ -3323,7 +3323,7 @@ spawn(function()
                                     v.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
                                     topos(v.HumanoidRootPart.CFrame * Pos)
                                     AttackNoCD()
-                                -- sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius",math.huge)
+                                sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius",math.huge)
                                 until not _G.AutoCakePrince or not v.Parent or v.Humanoid.Health <= 0
                             end
                         end
@@ -3338,9 +3338,13 @@ end)
 
 Main:Toggle("Auto Kill Dough King", _G.Autodoughking, false, function(value)
     _G.Autodoughking = value
-    Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2145.539306640625, 69.16679382324219,-12406.0576171875)
-    Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2145.539306640625, 69.16679382324219,-12406.0576171875)
+    if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+        Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2145.539306640625, 69.16679382324219,-12406.0576171875)
+    end
     StopTween(_G.Autodoughking)
+end)
+player.CharacterAdded:Connect(function(character)
+    Game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2145.539306640625, 69.16679382324219,-12406.0576171875)
 end)
 
 spawn(function()
@@ -3359,7 +3363,7 @@ spawn(function()
                                     v.HumanoidRootPart.Size = Vector3.new(50, 50, 50)
                                     topos(v.HumanoidRootPart.CFrame * Pos)
                                     AttackNoCD()
-                                sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius",math.huge)
+                                    sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
                                 until not _G.Autodoughking or not v.Parent or v.Humanoid.Health <= 0
                             end
                         end
