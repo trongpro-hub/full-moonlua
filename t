@@ -6643,4 +6643,4 @@ spawn(function()
         end
     end)
 wait(7)
-loadstring(game:HttpGet("https://raw.githubusercontent.com/trongpro-hub/full-moonlua/main/test"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/trongpro-hub/full-moonlua/main/beta2"))()
