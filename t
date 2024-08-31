@@ -634,6 +634,29 @@ function CheckQuest()
     end
 end
 
+do -- Team Script
+    repeat 
+        ChooseTeam = game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("ChooseTeam",true)
+        UIController = game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("UIController",true)
+        if UIController and ChooseTeam then
+            if ChooseTeam.Visible then
+                for i,v in pairs(getgc()) do
+                    if type(v) == "function" and getfenv(v).script == UIController then
+                        local constant = getconstants(v)
+                        pcall(function()
+                            if constant[1] == "Pirates" and #constant == 1 then
+                                v(shared.Team or "Pirates")
+                            end
+                        end)
+                    end
+                end
+            end
+        end
+        wait(1)
+    until game.Players.LocalPlayer.Team
+    repeat wait() until game.Players.LocalPlayer.Character
+end
+
 function Hop()
     local PlaceID = game.PlaceId
     local AllIDs = {}
@@ -2544,41 +2567,16 @@ R:AddButton({
         wait(3)
         spawn(function()
             while wait() do
-                if BoneFMode == "Quest" and _G.Auto_Bone and World3 then
+                if BoneFMode == "Quest" and _G.Auto_Quest and World3 then
                     pcall(function()
                         if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
                             StartBring = false
-                            if BypassTP then
-                                if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - BoneQuestPos.Position).Magnitude > 1500 then
-                                    BTP(BoneQuestPos)
-                                elseif (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - BoneQuestPos.Position).Magnitude < 1500 then
-                                    topos(BoneQuestPos)
-                                end
-                            else
-                                topos(BoneQuestPos)
-                            end
+                            topos(BoneQuestPos)
                             if (BoneQuestPos.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 3 then
                                 game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartDialogue", "Sealed King")
                             end
                         elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
                             if game:GetService("Workspace").Enemies:FindFirstChild("Sealed King") then
-                                for i, v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                                    if v.Name == "Sealed King" and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
-                                        repeat task.wait(_G.FastAttackDelay)
-                                            EquipWeapon(_G.SelectWeapon)
-                                            AutoHaki()
-                                            PosMon = v.HumanoidRootPart.CFrame
-                                            MonFarm = v.Name
-                                            topos(v.HumanoidRootPart.CFrame * Pos)
-                                            v.HumanoidRootPart.CanCollide = false
-                                            v.Humanoid.WalkSpeed = 0
-                                            v.Head.CanCollide = false
-                                            StartBring = true
-                                            AttackNoCD()
-                                        until not _G.Auto_Bone or v.Humanoid.Health <= 0 or not v.Parent or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false
-                                        StartBring = false
-                                    end
-                                end
                             end
                         end
                     end)
@@ -6646,3 +6644,5 @@ spawn(function()
             end
         end
     end)
+wait(7)
+loadstring(game:HttpGet("https://raw.githubusercontent.com/trongpro-hub/full-moonlua/main/beta.lua"))()
