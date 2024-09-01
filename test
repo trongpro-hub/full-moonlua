@@ -634,29 +634,6 @@ function CheckQuest()
     end
 end
 
-do -- Team Script
-    repeat 
-        ChooseTeam = game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("ChooseTeam",true)
-        UIController = game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("UIController",true)
-        if UIController and ChooseTeam then
-            if ChooseTeam.Visible then
-                for i,v in pairs(getgc()) do
-                    if type(v) == "function" and getfenv(v).script == UIController then
-                        local constant = getconstants(v)
-                        pcall(function()
-                            if constant[1] == "Pirates" and #constant == 1 then
-                                v(shared.Team or "Pirates")
-                            end
-                        end)
-                    end
-                end
-            end
-        end
-        wait(1)
-    until game.Players.LocalPlayer.Team
-    repeat wait() until game.Players.LocalPlayer.Character
-end
-
 function Hop()
     local PlaceID = game.PlaceId
     local AllIDs = {}
@@ -2521,7 +2498,7 @@ spawn(function()
     end
 end)
 
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/trongpro-hub/trongdepzai/main/autodoughking')))()
 local Window = OrionLib:MakeWindow({Name = "", HidePremium = false, IntroText = "Library", SaveConfig = true, ConfigFolder = ""})
 
 -------------Tab-----------------------
@@ -6644,5 +6621,3 @@ spawn(function()
             end
         end
     end)
-wait(7)
-loadstring(game:HttpGet("https://raw.githubusercontent.com/trongpro-hub/full-moonlua/main/t"))()
